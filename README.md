@@ -26,7 +26,7 @@ However, later it will last fewer amount of time due to caching.
 Devbox is used for ensuring that while following tutorial same dependencies as an author will be used.
 Those dependencies are defined within ./devbox.json.
 
-```devbox shell``` will list all installed dependencies by Devbox.
+```devbox list``` will list all installed dependencies by Devbox.
 
 
 
@@ -46,8 +46,15 @@ specific resources. For instance: ```kubectl explain Namespace```
 
 ```kubectl get rs``` - showing amount of replicaSets for a pod
 
+```k get pods -o wide``` - provides information of which node pod is running on.
+
+```k exec -it manual-pv-and-pvc -- bash``` - executing command within a container 
+
+```helm create <NAME_OF_CHART>``` - creating chart with specific name
+
 ## Setting aliases
 ```alias k=kubectl```
+```alias t=task```
 ```alias tl='task --list-all'```
 
 [//]: # (```tl``` - alias for t=task l=list-all &#40;listing all tasks&#41; )
@@ -76,6 +83,19 @@ Help Token: AVnrbflP19n5Wy9MfQZ5vux1HVlVuWM_B4v8fMvfVZHx4Q1pt_mQ-d1yjhpWJzaKckLF
 
 - Please run gcloud billing projects link 1011180695086 --billing-account=012269-BAED37-84FA49
 
+## Demo application:
+Minimal 3 Tier web Application:
+
+* React Front End,
+* Two API implementations,
+  * Node.js (interpreted),
+  * Go (compiled),
+* Python load generator,
+* PostgreSQL Database.
+
+![Demo application architecture](./readme-assets/demo_application_architecture.png)
+
+![Demo application view](./readme-assets/demo_application_view.png)
 
 ## Screenshots
 **GKE cluster:**
