@@ -8,4 +8,4 @@ spec:
     spec:
       containers:
         - name: client-react-nginx
-          image: sidpalas/devops-directive-docker-course-client-react-nginx:PRODUCTION_VERSION
+          image: jakubkap/devops-directive-docker-course-client-react-nginx:PRODUCTION_VERSION

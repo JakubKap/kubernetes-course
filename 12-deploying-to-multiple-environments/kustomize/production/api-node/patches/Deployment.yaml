@@ -8,4 +8,4 @@ spec:
     spec:
       containers:
         - name: api-node
-          image: sidpalas/devops-directive-docker-course-api-node:PRODUCTION_VERSION
+          image: jakubkap/devops-directive-docker-course-api-node:PRODUCTION_VERSION

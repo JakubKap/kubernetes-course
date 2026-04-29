@@ -57,7 +57,7 @@ tasks:
           gum style "$(cat <<EOF
           🚨  You will need to push a copy of the corresponding container image
           🚨  container image to a repository of your own because 
-          🚨  sidpalas/devops-directive-kubernetes-course-load-generator-python
+          🚨  jakubkap/devops-directive-kubernetes-course-load-generator-python
           🚨  is private (to demonstrate how image pull secrets work)
           EOF
           )"
