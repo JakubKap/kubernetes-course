@@ -93,8 +93,15 @@ Minimal 3 Tier web Application:
 * Python load generator,
 * PostgreSQL Database.
 
-![Demo application architecture](./readme-assets/demo_application_architecture.png)
+## Demo application with K8s:
+* Deployments for stateless components.
+* StatefulSet for DB (via helm chart).
+* Services provide stable network endpoints.
+* Ingress routes traffic from outside the cluster.
+* ConfigMap and Secrets for configuration.
 
+![Demo application architecture](./readme-assets/demo_application_architecture.png)
+![Demo application K8s architecture](./readme-assets/demo_application_k8s_architecture.png)
 ![Demo application view](./readme-assets/demo_application_view.png)
 
 ## Screenshots
