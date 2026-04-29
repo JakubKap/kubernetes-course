@@ -107,6 +107,8 @@ Minimal 3 Tier web Application:
 ## Screenshots
 **GKE cluster:**
 ![GKE cluster](./readme-assets/gke_cluster.png)
+**GKE built-in logging for demo application:**
+![GKE logging](./readme-assets/gke_logging.png)
 
-Civo cluster:**
+**Civo cluster:**
 ![Civo cluster](./readme-assets/civo_cluster.png)
