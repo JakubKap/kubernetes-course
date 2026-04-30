@@ -52,6 +52,8 @@ specific resources. For instance: ```kubectl explain Namespace```
 
 ```helm create <NAME_OF_CHART>``` - creating chart with specific name
 
+```k9s``` - text based user interface used for graphical management of K8s. In my opinion - better than Lens. 
+
 ## Setting aliases
 ```alias k=kubectl```
 ```alias t=task```
