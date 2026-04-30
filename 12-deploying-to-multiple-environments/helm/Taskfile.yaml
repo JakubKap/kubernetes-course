@@ -23,7 +23,7 @@ tasks:
 
   push:
     cmds:
-      - helm push api-golang-helm-chart-0.1.0.tgz oci://registry-1.docker.io/sidpalas
+      - helm push api-golang-helm-chart-0.1.0.tgz oci://registry-1.docker.io/jakubkap
     desc: "Push the helm chart to an oci registry"
 
   build-push:
