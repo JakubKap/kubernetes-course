@@ -12,7 +12,7 @@ Each directory within the repo corresponds to one section of the course. You sho
 There are a number of software tools used throughout the course. Instructions on the best way to set them up can be found in [03-installation-and-setup](03-installation-and-setup/README.md).
 
 Application has also GitHub actions defined:
-
+![Github action](./readme-assets/Github_action.png)
 
 ## GitHub actions:
 GitHub actions are located here: .github/workflows/image-ci.yml
