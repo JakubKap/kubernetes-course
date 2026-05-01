@@ -23,7 +23,7 @@ The Taskfile contains the commands to start each application:
 
 ### Postgres
 
-It's way more convenient to run postgres in a container, so we will do that.
+It's way more convenient to run postgres in a container, so we will do that..
 
 `task postgresql:run-postgres` will start postgres in a container and publish port 5432 from the container to your localhost.
 
