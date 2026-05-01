@@ -3,3 +3,4 @@ vars:
 
 deployments:
   - path: manifests
+    waitReadiness: true
