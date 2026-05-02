@@ -1,124 +1,147 @@
-[# DevOps Directive Kubernetes Course
+# DevOps Directive — Kubernetes Course
 
-This is the companion repo to: [Complete Kubernetes Course -- From BEGINNER to PRO
-](https://www.youtube.com/watch?v=2T86xAtR6Fo)
+Companion repository for the [Complete Kubernetes Course: From BEGINNER to PRO](https://www.youtube.com/watch?v=2T86xAtR6Fo).
 
-[![thumbnail](./readme-assets/thumbnail.jpg)](https://www.youtube.com/watch?v=2T86xAtR6Fo)
+[![Course Thumbnail](./readme-assets/thumbnail.jpg)](https://www.youtube.com/watch?v=2T86xAtR6Fo)
 
-## Using this repo
+---
 
-Each directory within the repo corresponds to one section of the course. You should fork the repo and follow along with the lessons and use/update/modify the code samples as needed.
+## Getting Started
 
-There are a number of software tools used throughout the course. Instructions on the best way to set them up can be found in [03-installation-and-setup](03-installation-and-setup/README.md).
+Each directory corresponds to one section of the course. Fork the repo and follow along, modifying the code samples as needed.
 
-Application has also GitHub actions defined:
-![Github action](./readme-assets/Github_action.png)
+Software installation instructions are in [03-installation-and-setup](03-installation-and-setup/README.md).
 
-## GitHub actions:
-GitHub actions are located here: .github/workflows/image-ci.yml
+---
 
 ## Technologies
-[Civo](https://dashboard.civo.com/) is used for hosting K8s cluster on a Cloud.
-GKE provided by Google Cloud is used for cluster experience.
 
-## Using devbox on Windows
-From root of a project, please run:
-* ```wsl -d Ubuntu```.
-* ```devbox shell```.
+- **[Civo](https://dashboard.civo.com/)** — cloud-hosted Kubernetes clusters
+- **GKE (Google Kubernetes Engine)** — Google Cloud cluster experience
 
-During first time when those commands will be executed - whole process might take some time.
-However, later it will last fewer amount of time due to caching.
+---
 
-Devbox is used for ensuring that while following tutorial same dependencies as an author will be used.
-Those dependencies are defined within ./devbox.json.
+## Local Development with Devbox
 
-```devbox list``` will list all installed dependencies by Devbox.
+Devbox ensures you use the same dependencies as the course author. Dependencies are defined in `./devbox.json`.
 
+**Windows users** — run from the project root:
 
+```bash
+wsl -d Ubuntu
+devbox shell
+```
 
-## Useful commands
-Taskfile.yaml files specifies very commonly used tasks across the project 
-(associated with deploying and managing K8s clusters).
+> The first run may take a while due to downloading dependencies. Subsequent runs are faster thanks to caching.
 
-```devbox list``` will list all available dependencies.
+```bash
+devbox list   # List all installed dependencies
+```
 
-```t civo:06-clean-up``` & ```gcp:09-clean-up``` cleanup infrastructure. It is crucial to clean it, 
-because **otherwise there will be charged fee while cluster(s) will be running**.
+---
 
-```kubectx``` - swiching context between clusters
+## CI/CD — GitHub Actions
 
-```kubectl explain <RESOURCE_TYPE>``` - explains fields and its description regarding
-specific resources. For instance: ```kubectl explain Namespace```
+Workflow file: `.github/workflows/image-ci.yml`
 
-```kubectl get rs``` - showing amount of replicaSets for a pod
+![GitHub Actions](./readme-assets/Github_action.png)
 
-```k get pods -o wide``` - provides information of which node pod is running on.
+---
 
-```k exec -it manual-pv-and-pvc -- bash``` - executing command within a container 
+## Useful Commands
 
-```helm create <NAME_OF_CHART>``` - creating chart with specific name
+Common tasks are defined in `Taskfile.yaml`.
 
-```k9s``` - text based user interface used for graphical management of K8s. In my opinion - better than Lens.
+| Command | Description                                                     |
+|---|-----------------------------------------------------------------|
+| `t civo:06-clean-up` | Clean up Civo infrastructure                                    |
+| `t gcp:09-clean-up` | Clean up GCP infrastructure                                     |
+| `devbox list` | List all Devbox dependencies                                    |
+| `kubectx` | Switch context between clusters                                 |
+| `k9s` | Text-based UI for K8s management (recommended over Lens)        |
+| `kubent` | Detect deprecated APIs in the cluster                           |
+| `kubectl explain <RESOURCE>` | Describe fields of a K8s resource type (for instance Namespace) |
+| `kubectl get rs` | Show ReplicaSets for a pod                                      |
+| `k get pods -o wide` | Show pods with their node assignment                            |
+| `k exec -it <POD> -- bash` | Open a shell inside a container                                 |
+| `helm create <NAME>` | Create a new Helm chart                                         |
 
-```kubent``` - detecting deprecations in cluster
+> ⚠️ **Always clean up your clusters when done** — running clusters on Civo and GCP incur costs.
 
-## Setting aliases
-```alias k=kubectl```
-```alias t=task```
-```alias tl='task --list-all'```
+---
 
-[//]: # (```tl``` - alias for t=task l=list-all &#40;listing all tasks&#41; )
+## Aliases
 
-Using key from Civo:
-    ```civo apikey current <KEY_NAME>```
-    I have used ```beginner-to-pro```
+```bash
+alias k=kubectl
+alias t=task
+alias tl='task --list-all'
+```
 
+---
 
-## Possible problems
-In case of an error:
+## Civo API Key
 
-ERROR: (gcloud.services.enable) FAILED_PRECONDITION: Billing account for project '1011180695086' is not found. Billing must be enabled for activation of service(s) 'compute.googleapis.com,container.googleapis.com,secretmanager.googleapis.com,artifactregistry.googleapis.com,containerregistry.googleapis.com,dns.googleapis.com' to proceed.
-Help Token: AVnrbflP19n5Wy9MfQZ5vux1HVlVuWM_B4v8fMvfVZHx4Q1pt_mQ-d1yjhpWJzaKckLFWFsLqw83iDmRjImcklvHTFVtvrfn0KtgvxpCcb3FVtgO
-- '@type': type.googleapis.com/google.rpc.PreconditionFailure
-  violations:
-    - subject: ?error_code=390001&project=1011180695086&services=compute.googleapis.com&services=container.googleapis.com&services=secretmanager.googleapis.com&services=artifactregistry.googleapis.com&services=containerregistry.googleapis.com&services=dns.googleapis.com
-      type: googleapis.com/billing-enabled
-- '@type': type.googleapis.com/google.rpc.ErrorInfo
-  domain: serviceusage.googleapis.com/billing-enabled
-  metadata:
-  project: '1011180695086'
-  services: compute.googleapis.com,container.googleapis.com,secretmanager.googleapis.com,artifactregistry.googleapis.com,containerregistry.googleapis.com,dns.googleapis.com
-  reason: UREQ_PROJECT_BILLING_NOT_FOUND
-  task: Failed to run task "gcp:02-enable-apis": exit status 1
+```bash
+civo apikey current <KEY_NAME>
+# Example key name used in the course: beginner-to-pro
+```
 
-- Please run gcloud billing projects link 1011180695086 --billing-account=012269-BAED37-84FA49
+---
 
-## Demo application:
-Minimal 3 Tier web Application:
+## Demo Application
 
-* React Front End,
-* Two API implementations,
-  * Node.js (interpreted),
-  * Go (compiled),
-* Python load generator,
-* PostgreSQL Database.
+A minimal 3-tier web application used throughout the course.
 
-## Demo application with K8s:
-* Deployments for stateless components.
-* StatefulSet for DB (via helm chart).
-* Services provide stable network endpoints.
-* Ingress routes traffic from outside the cluster.
-* ConfigMap and Secrets for configuration.
+**Components:**
+- React front end
+- Two API implementations: Node.js (interpreted) and Go (compiled)
+- Python load generator
+- PostgreSQL database
 
-![Demo application architecture](./readme-assets/demo_application_architecture.png)
-![Demo application K8s architecture](./readme-assets/demo_application_k8s_architecture.png)
-![Demo application view](./readme-assets/demo_application_view.png)
+**Kubernetes resources used:**
+- `Deployment` — stateless components
+- `StatefulSet` — database (via Helm chart)
+- `Service` — stable network endpoints
+- `Ingress` — external traffic routing
+- `ConfigMap` / `Secret` — configuration management
+
+### Architecture
+
+![Demo Application Architecture](./readme-assets/demo_application_architecture.png)
+![Demo Application K8s Architecture](./readme-assets/demo_application_k8s_architecture.png)
+![Demo Application View](./readme-assets/demo_application_view.png)
+
+---
 
 ## Screenshots
-**GKE cluster:**
-![GKE cluster](./readme-assets/gke_cluster.png)
-**GKE built-in logging for demo application:**
-![GKE logging](./readme-assets/gke_logging.png)
 
-**Civo cluster:**
-![Civo cluster](./readme-assets/civo_cluster.png)
+**GKE Cluster**
+![GKE Cluster](./readme-assets/gke_cluster.png)
+
+**GKE Built-in Logging**
+![GKE Logging](./readme-assets/gke_logging.png)
+
+**Civo Cluster**
+![Civo Cluster](./readme-assets/civo_cluster.png)
+
+---
+
+## Troubleshooting
+
+### GCP Billing Not Enabled
+
+```
+ERROR: FAILED_PRECONDITION: Billing account for project '...' is not found.
+```
+
+**Fix:** Link your billing account to the project:
+
+```bash
+gcloud billing projects link <PROJECT_ID> --billing-account=<BILLING_ACCOUNT_ID>
+```
+
+Example:
+```bash
+gcloud billing projects link 1011180695086 --billing-account=012269-BAED37-84FA49
+```
